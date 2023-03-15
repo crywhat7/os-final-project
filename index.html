@@ -1,13 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <title>Login</title>
-  </head>
-  <body>
-    HOLA
-  </body>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Login</title>
+<link href="./css/loginstyle.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<div class="form">
+	<div class="hero">
+		<div class="form-box">
+			<div class="button-box">
+				<div id="btn"></div>
+				<button type="button" class="toggle-btn" onclick="login()">Entrar</button>
+				<button type="button" class="toggle-btn" onclick="register()">Registrarse</button>						
+			</div>
+		<form id="login" class="input-group">
+			<input type="text" id="name" class="input-field" placeholder="Usuario" required>
+			<input type="password" id="password" class="input-field" placeholder="Contraseña" required>
+			<input type="checkbox" class="check-box"><span>Recordar contraseña</span>
+			<button type="submit" class="submit-btn"><a href="">Entrar</a></button>
+
+		</form>
+		<form id="register" class="input-group">
+			<input type="text" class="input-field" placeholder="Nombre Completo" required>
+			<input type="text" class="input-field" placeholder="Usuario" required>
+			<input type="email"  class="input-field" placeholder="Correo Electronico" required>
+			<input type="text" class="input-field" placeholder="Contraseña" required>
+			<input type="checkbox" class="check-box"><span>Aceptar Terminos y Condiciones</span>
+			<button  type="submit" class="submit-btn"><a href="">Registrarse</a></button>		
+		</form>
+		</div>
+	</div>
+	</div>
+	<!--Animación para Register/Login-->
+	<script src="./js/animation.js"></script>
+</body>
 </html>
+
