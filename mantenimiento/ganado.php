@@ -85,7 +85,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-success" onclick="enviarFormulario()">Enviar</button>
+                  <button type="button" class="btn btn-success" onclick="enviarFormularioGanado()">Enviar</button>
                 </div>
               </div>
             </div>
@@ -100,6 +100,7 @@
               <th>Nombre</th>
               <th>Nacimiento</th>
               <th>Imagen</th>
+              <th>Eliminar</th>
             </tr>
             <?php
             @include("../php/conexion.php");
@@ -114,6 +115,9 @@
                 echo "<td>{$vaca['fecha_nacimiento']}</td>";
                 echo "<td class='row-image text-center'>";
                 echo "<img src='{$vaca['imagen']}'>";
+                echo "</td>";
+                echo "<td class='text-center delete-btn'>";
+                echo "<i onclick='deleteGanado('vaca',{$vaca['codigo_vaca']})' class='fa-solid fa-trash'></i>";
                 echo "</td>";
                 echo "</tr>";
               }
@@ -133,6 +137,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/ef2430d1e3.js" crossorigin="anonymous"></script>
   <script src="./js/script.js">
 
   </script>

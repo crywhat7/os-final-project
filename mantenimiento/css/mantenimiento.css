@@ -23,3 +23,13 @@
 .card-header button {
   margin-left: 15px;
 }
+
+.delete-btn i {
+  color: #a81308;
+  transition: all 0.3s ease-in-out;
+}
+.delete-btn i:hover {
+  color: #a81308;
+  transform: scale(1.1);
+  cursor: pointer;
+}
