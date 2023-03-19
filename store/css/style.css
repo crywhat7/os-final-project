@@ -1,0 +1,31 @@
+.principal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem;
+}
+
+.secundario {
+    display: grid;
+    margin: 1rem;
+    gap: 1rem;
+}
+
+.secundario .resenas .group-resenas {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+.secundario .resenas .group-resenas img{
+    width: 100%;
+    max-height: 10rem;
+    object-fit: cover;
+}
+
+/* Si es mobile, 1 columna */
+@media (max-width: 768px) {
+    .principal {
+        grid-template-columns: 1fr;
+    }
+}
