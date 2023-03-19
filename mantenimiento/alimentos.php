@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../css/bootstrap.min.css" />
   <link rel="stylesheet" href="./css/mantenimiento.css">
-  <title>Ganado</title>
+  <title>Alimentos</title>
 </head>
 
 <body>
@@ -21,12 +21,11 @@
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link active">Ganado
-              <span class="visually-hidden">(current)</span>
-            </a>
+            <a class="nav-link active" href="./ganado.php">Ganado</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./alimentos.php">Alimentos</a>
+            <a class="nav-link active">Alimentos</a>
+            <span class="visually-hidden">(current)</span>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./establos.php">Establos</a>
@@ -96,8 +95,8 @@
             <tr>
               <th>Nombre</th>
               <th>Nacimiento</th>
-              <th class="text-center">Imagen</th>
-              <th class="text-center">Eliminar</th>
+              <th>Imagen</th>
+              <th>Eliminar</th>
             </tr>
             <?php
             @include("../php/conexion.php");
@@ -113,10 +112,8 @@
                 echo "<td class='row-image text-center'>";
                 echo "<img src='{$vaca['imagen']}'>";
                 echo "</td>";
-                echo "<td class='text-center'>";
-                echo "<button type=\"button\" class=\"btn btn-danger\">";
-                echo "<i onclick=\"deleteElement('vaca',{$vaca['codigo_vaca']})\" class='fa-solid fa-trash'></i>";
-                echo "</button>";
+                echo "<td class='text-center delete-btn'>";
+                echo "<i onclick='deleteGanado('vaca',{$vaca['codigo_vaca']})' class='fa-solid fa-trash'></i>";
                 echo "</td>";
                 echo "</tr>";
               }
@@ -129,57 +126,7 @@
     <section class="tipo-ganado">
       <div class="card border-primary mb-3">
         <div class="card-header">Razas</div>
-        <div class="card-body tipo-ganado-card-body">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Gyr</h4>
-                <p class="card-text text-center">
-                  <img src="./assets/gyr.png">
-                </p>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Brahman</h4>
-                <p class="card-text text-center">
-                  <img src="./assets/brahman.png">
-                </p>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Holstein</h4>
-                <p class="card-text text-center">
-                  <img src="./assets/holstein.png">
-                </p>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Jersey</h4>
-                <p class="card-text text-center">
-                  <img src="./assets/jersey.png">
-                </p>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Pardo Suizo</h4>
-                <p class="card-text text-center">
-                  <img src="./assets/pardo_suizo.png">
-                </p>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Angus</h4>
-                <p class="card-text text-center">
-                  <img src="./assets/angus.png">
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="card-body">Hola</div>
       </div>
     </section>
   </main>
