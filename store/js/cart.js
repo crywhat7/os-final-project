@@ -30,7 +30,7 @@ const renderizarCarrito = () => {
     resumen.subtotal.innerHTML = `L ${totalCarrito}`;
     resumen.impuesto.innerHTML = `L ${Math.round(totalCarrito * 0.15 * 100) / 100}`;
     resumen.total.innerHTML = `L ${Math.round(totalCarrito * 1.15 * 100) / 100}`;
-    
+
 };
 
 const eliminarProducto = (id) => {
@@ -41,5 +41,64 @@ const eliminarProducto = (id) => {
     renderizarCarrito();
 };
 
+const comprar = () => {
+    const { codigo_cliente } = JSON.parse(sessionStorage.getItem('data-user'));
+    const fechaFactura = new Date().toISOString().split('T')[0];
+    let valuesVentas = '';
+    productosCarrito.forEach(producto => {
+        valuesVentas += `(${producto.id}, ${codigo_cliente}, ::codigo_factura, ${producto.cantidad}, ${producto.precio}, ${producto.cantidad * producto.precio}, '${fechaFactura}'),`;
+    });
+    // Quitar la ultima coma y cambiarla por punto y coma
+    valuesVentas = valuesVentas.slice(0, -1) + ';';
+
+    sql_insertar_factura = `INSERT INTO facturas (codigo_cliente, subtotal, impuesto, total, fecha_factura) VALUES (${codigo_cliente}, 0, 0, 0, '${fechaFactura}');`;
+
+    sql_insertar_ventas = `INSERT INTO ventas (codigo_producto, codigo_cliente, codigo_factura, cantidad, precio, total, fecha_venta)
+    VALUES
+    ${valuesVentas}`;
+
+    // const sql = `
+    //     START TRANSACTION;INSERT INTO facturas (codigo_cliente, subtotal, impuesto, total, fecha_factura) VALUES (${codigo_cliente}, 0, 0, 0, '${fechaFactura}');SET @codigo_factura = LAST_INSERT_ID();
+
+    //     INSERT INTO ventas (codigo_producto, codigo_cliente, codigo_factura, cantidad, precio, total, fecha_venta)
+    //     VALUES
+    //     ${valuesVentas}
+        
+    //     SET @subtotal = (SELECT SUM(total) FROM ventas WHERE codigo_factura = @codigo_factura);
+    //     SET @impuesto = @subtotal * 0.1;
+    //     SET @total = @subtotal + @impuesto;
+        
+    //     UPDATE facturas
+    //     SET subtotal = @subtotal, impuesto = @impuesto, total = @total
+    //     WHERE codigo_factura = @codigo_factura;
+
+    //     COMMIT;
+    // `;
+
+    // Crear un formulario para enviar los datos
+    const form = document.createElement('form');
+    const inputFactura = document.createElement('input');
+    const inputVentas = document.createElement('input');
+
+    inputFactura.setAttribute('name', 'sql_insertar_factura');
+    inputFactura.setAttribute('value', sql_insertar_factura);
+    inputFactura.setAttribute('type', 'hidden');
+
+    inputVentas.setAttribute('name', 'sql_insertar_ventas');
+    inputVentas.setAttribute('value', sql_insertar_ventas);
+    inputVentas.setAttribute('type', 'hidden');
+
+    form.appendChild(inputFactura);
+    form.appendChild(inputVentas);
+
+    form.setAttribute('method', 'post');
+    form.setAttribute('action', './php/enviar-carrito.php');
+
+    document.body.appendChild(form);
+
+    form.submit();
+    // console.log(sql);
+
+};
 // console.log(carritoTableBody);
 renderizarCarrito();

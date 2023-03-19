@@ -14,12 +14,14 @@ if (mysqli_num_rows($resultado) > 0) {
     $codigo = $fila['codigo_cliente'];
     $nombre = $fila['nombre'];
     $username = $fila['username'];
+    $email = $fila['email'];
     echo "
         <script>
             const session = {
                 codigo_cliente: {$codigo},
                 nombre: '{$nombre}',
-                username: '{$username}'
+                username: '{$username}',
+                email: '{$email}'
             }
             sessionStorage.setItem('data-user', JSON.stringify(session));
             window.setTimeout(function(){
