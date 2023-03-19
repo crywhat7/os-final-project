@@ -17,7 +17,7 @@
     gap: 1rem;
 }
 
-.secundario .resenas .group-resenas img{
+.secundario .resenas .group-resenas img {
     width: 100%;
     max-height: 10rem;
     object-fit: cover;
@@ -38,5 +38,10 @@
 @media (max-width: 768px) {
     .principal {
         grid-template-columns: 1fr;
+    }
+
+    .lista-productos {
+        grid-template-columns: 1fr;
+        padding: 2rem;
     }
 }
