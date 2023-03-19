@@ -54,42 +54,38 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="formularioModalLabel">Agregar ganado</h5>
+                  <h5 class="modal-title" id="formularioModalLabel">Agregar vaquita</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                  <form>
+                  <form action="../php/enviar-formulario-ganado.php" method="post" id="formulario-new-vaca">
                     <div class="mb-3">
                       <label for="nombreInput" class="form-label">Nombre:</label>
-                      <input type="text" class="form-control" id="nombreInput">
+                      <input name="nombre" type="text" class="form-control" id="nombreInput">
                     </div>
                     <div class="mb-3">
                       <label for="emailInput" class="form-label">Fecha Nacimiento:</label>
-                      <input type="date" class="form-control" id="dateInput">
+                      <input name="fecha_nacimiento" type="date" class="form-control" id="dateInput">
                     </div>
                     <div class="mb-3">
                       <label for="establoInput" class="form-label">Pertece al establo:</label>
-                      <input type="text" class="form-control" id="establoInput">
+                      <input name="establo_pertenece" type="number" class="form-control" id="establoInput">
                     </div>
                     <div class="mb-3">
                       <label for="comidaInput" class="form-label">Su comida favorita:</label>
-                      <input type="text" class="form-control" id="comidaInput">
+                      <input name="alimento_preferido" type="number" class="form-control" id="comidaInput">
                     </div>
                     <div class="mb-3">
                       <label for="imagenInput" class="form-label">Imagen</label>
                       <div class="mb-3">
-                        <input type="text" class="form-control" id="imagenInput">
-
-                        <!-- 
-                        <button class="btn btn-primary">Seleccionar imagen</button>
-                        -->
+                        <input name="imagen" type="text" class="form-control" id="imagenInput">
                       </div>
                     </div>
                   </form>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-success">Enviar</button>
+                  <button type="button" class="btn btn-success" onclick="enviarFormulario()">Enviar</button>
                 </div>
               </div>
             </div>
@@ -137,6 +133,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
+  <script src="./js/script.js">
+
+  </script>
 </body>
 
 </html>

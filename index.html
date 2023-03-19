@@ -15,9 +15,9 @@
 				<button type="button" class="toggle-btn" onclick="login()">Entrar</button>
 				<button type="button" class="toggle-btn" onclick="register()">Registrarse</button>						
 			</div>
-		<form id="login" class="input-group">
-			<input type="text" id="name" class="input-field" placeholder="Usuario" required>
-			<input type="password" id="password" class="input-field" placeholder="Contraseña" required>
+		<form action="php/ingresar.php" method="post" id="login" class="input-group">
+			<input type="text" name="user" class="input-field" placeholder="Usuario" required>
+			<input type="password" name="password" class="input-field" placeholder="Contraseña" required>
 			<input type="checkbox" class="check-box"><span>Recordar contraseña</span>
 			<button type="submit" class="submit-btn"><a href="">Entrar</a></button>
 

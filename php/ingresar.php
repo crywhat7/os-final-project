@@ -1,22 +1,20 @@
 <?php
 
-require 'conexion.php';
+@include("../php/conexion.php");
 session_start();
 
 $user = $_POST['user'];
 $password = $_POST['password'];
 
-$consulta = "SELECT * FROM clientes WHERE usuario='$user' and pass='$password'";
-$resultado = mysqli_query($conex, $consulta);
+$consulta = "SELECT 1 FROM clientes WHERE username='$user' and pass='$password'";
+$resultado = mysqli_query($conexion, $consulta);
 
-$array = mysqli_fetch_array($resultado);
-
-if ($array['contar'] > 0) {
-    header("Location:../mantenimiento/ganado.php");
+// Si el usuario existe, se crea la sesión
+if (mysqli_num_rows($resultado) > 0) {  
+    header("Location: ../mantenimiento/ganado.php");
 } else {
-    echo "Error en la autenticación";
+    echo "El usuario o la contraseña son incorrectos";
 }
-mysqli_free_result($resultado);
-mysqli_close($conex);
 
+mysqli_free_result($resultado);
 ?>
