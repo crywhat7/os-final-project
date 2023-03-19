@@ -23,6 +23,17 @@
     object-fit: cover;
 }
 
+.lista-productos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+.lista-productos .card img {
+    height: 10rem;
+    object-fit: cover;
+}
+
 /* Si es mobile, 1 columna */
 @media (max-width: 768px) {
     .principal {
