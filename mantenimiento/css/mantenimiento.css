@@ -10,8 +10,14 @@
   max-width: 5rem;
 }
 
+.tabla {
+  height: fit-content;
+  max-height: 83vh;
+  overflow-y: auto;
+}
 .info-extra {
-  height: 83vh;
+  height: fit-content;
+  max-height: 83vh;
   overflow-y: auto;
 }
 
@@ -52,4 +58,20 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
+}
+
+
+/* Si es en mobile, que sean dos rows en vez de columns */
+@media (max-width: 768px) {
+  .contenido-principal {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+}
+
+/* Si es en mobile, que sean dos rows en vez de columns */
+@media (max-width: 768px) {
+  .alimentos-card-group {
+    grid-template-columns: 1fr;
+  }
 }
