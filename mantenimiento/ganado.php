@@ -55,7 +55,7 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                  <form action="../php/enviar-formulario-ganado.php" method="post" id="formulario-new-vaca">
+                  <form action="../php/enviar-formulario-ganado.php" method="post" id="new-element-form">
                     <div class="mb-3">
                       <label for="nombreInput" class="form-label">Nombre:</label>
                       <input name="nombre" type="text" class="form-control" id="nombreInput">
@@ -66,11 +66,42 @@
                     </div>
                     <div class="mb-3">
                       <label for="establoInput" class="form-label">Pertece al establo:</label>
-                      <input name="establo_pertenece" type="number" class="form-control" id="establoInput">
+                      <select class="form-control" name="establo_pertenece" id="establoInput">
+                        <?php
+                        @include("../php/conexion.php");
+                        if ($conexion) {
+                          $sql = "SELECT * FROM establos;";
+                          $resultado = mysqli_query($conexion, $sql);
+                          // Necesito que me itere sobre los datos de la consulte y me imprima en la lista.
+                          // <li><a class="dropdown-item">Action</a></li>
+                          while ($establo = mysqli_fetch_assoc($resultado)) {
+                            echo <<<HTML
+                            <option value="{$establo['codigo_establo']}">{$establo['nombre']}</option>
+                            HTML;
+                          }
+                        }
+                        ?>
+                      </select>
+                      <!-- <input name="establo_pertenece" type="number" class="form-control" id="establoInput"> -->
                     </div>
                     <div class="mb-3">
                       <label for="comidaInput" class="form-label">Su comida favorita:</label>
-                      <input name="alimento_preferido" type="number" class="form-control" id="comidaInput">
+                      <select class="form-control" name="alimento_preferido" id="establoInput">
+                        <?php
+                        @include("../php/conexion.php");
+                        if ($conexion) {
+                          $sql = "SELECT * FROM alimentos;";
+                          $resultado = mysqli_query($conexion, $sql);
+                          // Necesito que me itere sobre los datos de la consulte y me imprima en la lista.
+                          // <li><a class="dropdown-item">Action</a></li>
+                          while ($alimento = mysqli_fetch_assoc($resultado)) {
+                            echo <<<HTML
+                            <option value="{$alimento['codigo_alimento']}">{$alimento['nombre']}</option>
+                            HTML;
+                          }
+                        }
+                        ?>
+                      </select>
                     </div>
                     <div class="mb-3">
                       <label for="imagenInput" class="form-label">Imagen</label>
@@ -82,7 +113,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-success" onclick="enviarFormularioGanado()">Enviar</button>
+                  <button type="button" class="btn btn-success" onclick="enviarFormularioNewElement()">Enviar</button>
                 </div>
               </div>
             </div>
@@ -96,29 +127,44 @@
             <tr>
               <th>Nombre</th>
               <th>Nacimiento</th>
+              <th>Alimento preferido</th>
+              <th>Establo pertenece</th>
               <th class="text-center">Imagen</th>
               <th class="text-center">Eliminar</th>
             </tr>
             <?php
             @include("../php/conexion.php");
             if ($conexion) {
-              $sql = "SELECT * FROM ganado";
+              $sql = "SELECT
+              g.codigo_vaca,
+              g.nombre,
+              g.imagen,
+              g.fecha_nacimiento,
+              COALESCE ( a.nombre, 'SIN ALIMENTO' ) AS alimento_preferido,
+              COALESCE ( e.nombre, 'SIN ESTABLO' ) AS establo_pertenece 
+            FROM
+              ganado g
+              LEFT JOIN alimentos a ON a.codigo_alimento = g.alimento_preferido
+              LEFT JOIN establos e ON e.codigo_establo = g.establo_pertenece;";
               $resultado = mysqli_query($conexion, $sql);
               // Necesito que me itere sobre los datos de la consulte y me imprima en la lista.
               // <li><a class="dropdown-item">Action</a></li>
               while ($vaca = mysqli_fetch_assoc($resultado)) {
-                echo "<tr>";
-                echo "<td>{$vaca['nombre']}</td>";
-                echo "<td>{$vaca['fecha_nacimiento']}</td>";
-                echo "<td class='row-image text-center'>";
-                echo "<img src='{$vaca['imagen']}'>";
-                echo "</td>";
-                echo "<td class='text-center'>";
-                echo "<button type=\"button\" class=\"btn btn-danger\">";
-                echo "<i onclick=\"deleteElement('vaca',{$vaca['codigo_vaca']})\" class='fa-solid fa-trash'></i>";
-                echo "</button>";
-                echo "</td>";
-                echo "</tr>";
+                echo <<<HTML
+                <tr>
+                  <td>{$vaca['nombre']}</td>
+                  <td>{$vaca['fecha_nacimiento']}</td>
+                  <td>{$vaca['alimento_preferido']}</td>
+                  <td>{$vaca['establo_pertenece']}</td>
+                  <td class="row-image text-center">
+                    <img src="{$vaca['imagen']}">
+                  </td>
+                  <td class="text-center">
+                    <button type="button" class="btn btn-danger">
+                      <i onclick="deleteElement('vaca',{$vaca['codigo_vaca']})" class='fa-solid fa-trash'></i>
+                    </button>
+                  </td>
+                HTML;
               }
             }
             ?>
@@ -126,10 +172,10 @@
         </div>
       </div>
     </section>
-    <section class="tipo-ganado">
+    <section class="info-extra">
       <div class="card border-primary mb-3">
         <div class="card-header">Razas</div>
-        <div class="card-body tipo-ganado-card-body">
+        <div class="card-body info-extra-card-body">
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Gyr</h4>

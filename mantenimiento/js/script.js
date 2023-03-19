@@ -1,5 +1,5 @@
-enviarFormularioGanado = () => {
-    const formulario = document.getElementById('formulario-new-vaca');
+enviarFormularioNewElement = () => {
+    const formulario = document.getElementById('new-element-form');
     // Enviar datos
     // Ejecutar el submit del formulario
     formulario.submit();

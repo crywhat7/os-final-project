@@ -21,7 +21,7 @@
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="./ganado.php">Ganado</a>
+            <a class="nav-link" href="./ganado.php">Ganado</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active">Alimentos</a>
@@ -50,26 +50,14 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="formularioModalLabel">Agregar vaquita</h5>
+                  <h5 class="modal-title" id="formularioModalLabel">Agregar alimento</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                  <form action="../php/enviar-formulario-ganado.php" method="post" id="formulario-new-vaca">
+                  <form action="../php/enviar-formulario-alimento.php" method="post" id="new-element-form">
                     <div class="mb-3">
                       <label for="nombreInput" class="form-label">Nombre:</label>
                       <input name="nombre" type="text" class="form-control" id="nombreInput">
-                    </div>
-                    <div class="mb-3">
-                      <label for="emailInput" class="form-label">Fecha Nacimiento:</label>
-                      <input name="fecha_nacimiento" type="date" class="form-control" id="dateInput">
-                    </div>
-                    <div class="mb-3">
-                      <label for="establoInput" class="form-label">Pertece al establo:</label>
-                      <input name="establo_pertenece" type="number" class="form-control" id="establoInput">
-                    </div>
-                    <div class="mb-3">
-                      <label for="comidaInput" class="form-label">Su comida favorita:</label>
-                      <input name="alimento_preferido" type="number" class="form-control" id="comidaInput">
                     </div>
                     <div class="mb-3">
                       <label for="imagenInput" class="form-label">Imagen</label>
@@ -81,7 +69,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-success" onclick="enviarFormularioGanado()">Enviar</button>
+                  <button type="button" class="btn btn-success" onclick="enviarFormularioNewElement()">Enviar</button>
                 </div>
               </div>
             </div>
@@ -90,43 +78,75 @@
         </div>
 
         <div class="card-body">
-          <h4 class="card-title">Ganado</h4>
-          <table class="table table-hover">
-            <tr>
-              <th>Nombre</th>
-              <th>Nacimiento</th>
-              <th>Imagen</th>
-              <th>Eliminar</th>
-            </tr>
-            <?php
+          <h4 class="card-title">Alimentos</h4>
+          <div class="card-group alimentos-card-group">
+          <?php
             @include("../php/conexion.php");
             if ($conexion) {
-              $sql = "SELECT * FROM ganado";
+              $sql = "SELECT * FROM alimentos";
               $resultado = mysqli_query($conexion, $sql);
               // Necesito que me itere sobre los datos de la consulte y me imprima en la lista.
               // <li><a class="dropdown-item">Action</a></li>
-              while ($vaca = mysqli_fetch_assoc($resultado)) {
-                echo "<tr>";
-                echo "<td>{$vaca['nombre']}</td>";
-                echo "<td>{$vaca['fecha_nacimiento']}</td>";
-                echo "<td class='row-image text-center'>";
-                echo "<img src='{$vaca['imagen']}'>";
-                echo "</td>";
-                echo "<td class='text-center delete-btn'>";
-                echo "<i onclick='deleteGanado('vaca',{$vaca['codigo_vaca']})' class='fa-solid fa-trash'></i>";
-                echo "</td>";
-                echo "</tr>";
+              while ($alimento = mysqli_fetch_assoc($resultado)) {
+                echo <<<HTML
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">{$alimento['nombre']}</h4>
+                      <p class="card-text">
+                        <img class="card-img" style="max-width: 10rem;" src="{$alimento['imagen']}" alt="Imagen de alimento">
+                      </p>
+                    </div>
+                    <div class="card-footer text-muted">
+                      <button class="btn btn-danger" onclick="deleteElement('alimento',{$alimento['codigo_alimento']})">
+                        <i class='fa-solid fa-trash'></i>
+                      </button>
+                    </div>
+                  </div>
+                  HTML;
               }
             }
             ?>
-          </table>
+          </div>
         </div>
       </div>
     </section>
-    <section class="tipo-ganado">
+    <section class="info-extra">
       <div class="card border-primary mb-3">
-        <div class="card-header">Razas</div>
-        <div class="card-body">Hola</div>
+        <div class="card-header">Alimentos comunes para vacas</div>
+        <div class="card-body info-extra-card-body">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Alfalfa</h4>
+              <p class="card-text text-center">
+                <img src="https://www.webconsultas.com/sites/default/files/styles/wch_image_schema/public/temas/alfalfa_p.jpg">
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Heno de hierba</h4>
+              <p class="card-text text-center">
+                <img src="https://www.shutterstock.com/image-photo/dried-hay-bale-isolated-on-260nw-1818882584.jpg">
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Maíz ensilado</h4>
+              <p class="card-text text-center">
+                <img src="https://ganaderiasos.com/wp-content/uploads/2022/04/GSOS055.jpg">
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Harina de soja</h4>
+              <p class="card-text text-center">
+                <img src="https://avinews.com/wp-content/uploads/2021/08/harina-de-soja.jpg">
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>

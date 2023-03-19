@@ -1,16 +1,6 @@
 <?php
 @include("conexion.php");
 
-/*
- * Modificar el id "marca"
- * 
- * en la imagen de discord sale recortado
- * 
- * 
- * 
- * 
- */
-
 if ($conexion) {
     // Obtener los datos del formulario
     $nombre = $_POST['nombre'];

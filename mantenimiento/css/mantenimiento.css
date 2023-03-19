@@ -10,6 +10,11 @@
   max-width: 5rem;
 }
 
+.info-extra {
+  height: 83vh;
+  overflow-y: auto;
+}
+
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -33,13 +38,18 @@
   transform: scale(1.1);
   cursor: pointer;
 }
-.tipo-ganado-card-body {
+.info-extra-card-body {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
   gap: 1rem;
 }
-.tipo-ganado-card-body img{
+.info-extra-card-body img{
   max-width: 5rem;
   object-fit: contain;
 
+}
+.alimentos-card-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
 }
