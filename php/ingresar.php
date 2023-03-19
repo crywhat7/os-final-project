@@ -1,20 +1,35 @@
 <?php
 
 @include("../php/conexion.php");
-session_start();
-
 $user = $_POST['user'];
 $password = $_POST['password'];
 
-$consulta = "SELECT 1 FROM clientes WHERE username='$user' and pass='$password'";
+$consulta = "SELECT * FROM clientes WHERE username='$user' and pass='$password'";
 $resultado = mysqli_query($conexion, $consulta);
 
-// Si el usuario existe, se crea la sesión
-if (mysqli_num_rows($resultado) > 0) {  
-    header("Location: ../mantenimiento/ganado.php");
+
+// Guardar el nombre, id, usuario en la sesión
+if (mysqli_num_rows($resultado) > 0) {
+    $fila = mysqli_fetch_assoc($resultado);
+    $codigo = $fila['codigo_cliente'];
+    $nombre = $fila['nombre'];
+    $username = $fila['username'];
+    echo "
+        <script>
+            const session = {
+                codigo_cliente: {$codigo},
+                nombre: '{$nombre}',
+                username: '{$username}'
+            }
+            sessionStorage.setItem('data-user', JSON.stringify(session));
+            window.setTimeout(function(){
+                // alert('Bienvenido {$nombre}');
+                window.location.href = '../store/';
+            });
+        </script>
+    ";
+    // header("Location: ../store/");
 } else {
     echo "El usuario o la contraseña son incorrectos";
 }
-
-mysqli_free_result($resultado);
 ?>

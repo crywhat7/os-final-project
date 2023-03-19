@@ -24,13 +24,17 @@
 	background: #fff;
 	padding: 5px;
 	overflow: hidden;
+	border-radius: 1rem;
 }
 
 .button-box{
-	width: 220px;
-	margin: 35px auto;
+	width: 90%;
+	margin: 1rem auto;
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
 	position: relative;
-	box-shadow: 0 0 20px 9px #0179be38;
+	/* box-shadow: 0 0 20px 9px #0179be38; */
 	border-radius: 30px;
 }
 
@@ -47,7 +51,7 @@
 	top: 0;
 	left: 0;
 	position: absolute;
-	width: 110px;
+	width: 50%;
 	height: 100%;
 	background: linear-gradient(to right, #02aab0, #00cdac);
 	border-radius: 40px;
@@ -118,7 +122,7 @@ span{
 }
 
 #register{
-	left: 450px;
+	left: 50px;
 }
 
 .ok {

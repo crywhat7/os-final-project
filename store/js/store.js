@@ -1,6 +1,8 @@
 const toastLiveExample = document.getElementById('liveToast');
 let productosCarrito = JSON.parse(localStorage.getItem('productosCarrito')) || [];
 let cantidadCarrito;
+const usuario = JSON.parse(sessionStorage.getItem('data-user')) || {};
+console.log(usuario);
 
 actualizarBadgeCarrito = () => {
     const badgeCarrito = document.querySelector('.icon-carrito');
