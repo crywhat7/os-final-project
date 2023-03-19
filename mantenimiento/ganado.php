@@ -13,6 +13,10 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
+      <!-- Boton de regresar a la store -->
+      <button class="btn btn-primary mr-2" onclick="window.location.href='../store/'">
+        <i class="fa-solid fa-shop"></i>
+      </button>
       <a class="navbar-brand" href="#">Mantenimiento</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
         aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,7 +86,6 @@
                         }
                         ?>
                       </select>
-                      <!-- <input name="establo_pertenece" type="number" class="form-control" id="establoInput"> -->
                     </div>
                     <div class="mb-3">
                       <label for="comidaInput" class="form-label">Su comida favorita:</label>

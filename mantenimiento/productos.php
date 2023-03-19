@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../css/bootstrap.min.css" />
   <link rel="stylesheet" href="./css/mantenimiento.css">
-  <title>Establos</title>
+  <title>Productos</title>
 </head>
 
 <body>
@@ -31,11 +31,11 @@
             <a class="nav-link" href="./alimentos.php">Alimentos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active">Establos</a>
-            <span class="visually-hidden">(current)</span>
+            <a class="nav-link" href="./establos.php">Establos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./productos.php">Productos</a>
+            <a class="nav-link active">Productos</a>
+            <span class="visually-hidden">(current)</span>
           </li>
         </ul>
       </div>
@@ -54,21 +54,40 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="formularioModalLabel">Agregar establo</h5>
+                  <h5 class="modal-title" id="formularioModalLabel">Agregar producto</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                  <form action="../php/enviar-formulario-establo.php" method="post" id="new-element-form">
+                  <form action="../php/enviar-formulario-producto.php" method="post" id="new-element-form">
                     <div class="mb-3">
                       <label for="nombreInput" class="form-label">Nombre:</label>
                       <input name="nombre" type="text" class="form-control" id="nombreInput">
                     </div>
                     <div class="mb-3">
-                      <label for="nombreInput" class="form-label">Capacidad:</label>
-                      <input name="capacidad" type="number" class="form-control" id="nombreInput">
+                      <label for="nombreInput" class="form-label">Categoria:</label>
+                      <select class="form-control" name="tipo_producto" id="establoInput">
+                        <?php
+                        @include("../php/conexion.php");
+                        if ($conexion) {
+                          $sql = "SELECT * FROM tipo_producto;";
+                          $resultado = mysqli_query($conexion, $sql);
+                          // Necesito que me itere sobre los datos de la consulte y me imprima en la lista.
+                          // <li><a class="dropdown-item">Action</a></li>
+                          while ($tipo = mysqli_fetch_assoc($resultado)) {
+                            echo <<<HTML
+                            <option value="{$tipo['id_tipo']}">{$tipo['descripcion']}</option>
+                            HTML;
+                          }
+                        }
+                        ?>
+                      </select>
                     </div>
                     <div class="mb-3">
-                      <label for="imagenInput" class="form-label">Imagen</label>
+                      <label for="nombreInput" class="form-label">Precio:</label>
+                      <input name="precio" type="number" step="-1" class="form-control" id="nombreInput">
+                    </div>
+                    <div class="mb-3">
+                      <label for="imagenInput" class="form-label">Imagen:</label>
                       <div class="mb-3">
                         <input name="imagen" type="text" class="form-control" id="imagenInput">
                       </div>
@@ -86,26 +105,32 @@
         </div>
 
         <div class="card-body">
-          <h4 class="card-title">Establos</h4>
+          <h4 class="card-title">Alimentos</h4>
           <div class="card-group alimentos-card-group">
           <?php
             @include("../php/conexion.php");
             if ($conexion) {
-              $sql = "SELECT * FROM establos";
+              $sql = "SELECT * FROM productos p LEFT JOIN tipo_producto tp ON tp.id_tipo = p.tipo_producto";
               $resultado = mysqli_query($conexion, $sql);
               // Necesito que me itere sobre los datos de la consulte y me imprima en la lista.
               // <li><a class="dropdown-item">Action</a></li>
-              while ($establo = mysqli_fetch_assoc($resultado)) {
+              while ($producto = mysqli_fetch_assoc($resultado)) {
                 echo <<<HTML
                   <div class="card">
                     <div class="card-body">
-                      <h4 class="card-title">{$establo['nombre']}</h4>
+                      <h4 class="card-title">{$producto['nombre_producto']}</h4>
                       <p class="card-text">
-                        <img class="card-img" style="max-width: 10rem;" src="{$establo['imagen']}" alt="Imagen de establo">
+                        <img class="card-img" style="max-width: 10rem;" src="{$producto['imagen']}" alt="Imagen de producto">
+                      </p>
+                      <p class="card-text">
+                        <b>Tipo:</b> {$producto['descripcion']}
+                        <br/>
+                        <b>Precio:</b> L {$producto['precio']} 
+
                       </p>
                     </div>
                     <div class="card-footer text-muted">
-                      <button class="btn btn-danger" onclick="deleteElement('establo',{$establo['codigo_establo']})">
+                      <button class="btn btn-danger" onclick="deleteElement('producto',{$producto['codigo_producto']})">
                         <i class='fa-solid fa-trash'></i>
                       </button>
                     </div>
@@ -120,14 +145,19 @@
     </section>
     <section class="info-extra">
       <div class="card border-primary mb-3">
-        <div class="card-header">¿Que son los establos?</div>
+        <div class="card-header">Productos derivados de la vaca</div>
         <div class="card-body">
-          <p class="card-text">
-          Los establos son estructuras diseñadas para alojar y proteger a los animales, especialmente caballos, vacas, ovejas, cerdos, entre otros. Estos edificios deben proporcionar un espacio adecuado y seguro para que los animales se muevan, descansen y se alimenten. Aquí hay algunos detalles importantes sobre los establos para animales:
-          </p>
-          <p class="card-text">
-          En resumen, los establos para animales son estructuras importantes para mantener a los animales seguros y cómodos. Deben diseñarse y construirse cuidadosamente para satisfacer las necesidades específicas de los animales alojados en ellos.
-          </p>
+          <p>Los productos derivados de la vaca son de gran importancia para la economía y la alimentación de muchas sociedades alrededor del mundo. La carne de vaca es una fuente importante de proteínas y nutrientes, mientras que la leche de vaca es utilizada para producir una amplia variedad de productos lácteos. Además, la piel de la vaca se utiliza para fabricar cuero, y los huesos y tejidos conectivos de la vaca son utilizados para producir gelatina y otros productos.</p>
+          <p>Otras aplicaciones de los productos derivados de la vaca incluyen su uso como fertilizantes para la agricultura, y la producción de biocombustibles utilizando el estiércol de vaca. En muchas partes del mundo, la vaca también tiene un importante valor cultural y religioso, y es considerada un animal sagrado en algunas religiones.</p>
+          <ul>
+            <li>Carne</li>
+            <li>Leche</li>
+            <li>Cuero</li>
+            <li>Gelatina</li>
+            <li>Caldo</li>
+            <li>Fertilizantes</li>
+            <li>Combustible</li>
+          </ul>
         </div>
       </div>
     </section>
