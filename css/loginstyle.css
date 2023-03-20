@@ -1,142 +1,135 @@
 @charset "utf-8";
 /* CSS Document */
 
-*{
-	margin: 0;
-	padding: 0;
-	font-family: 'Helvetica';
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica";
 }
 
-.hero{
-	height: 100%;
-	width: 100%;
-	background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.7)),url("../img/login/fondo.jpg");
-	background-position: center;
-	background-size: cover;
-	position: absolute;
+.hero {
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+    url("../img/login/fondo.jpg");
+  background-position: center;
+  background-size: cover;
+  position: absolute;
 }
 
-.form-box{
-	width: 380px;
-	height: 480px;
-	position: relative;
-	margin: 6% auto;
-	background: #fff;
-	padding: 5px;
-	overflow: hidden;
-	border-radius: 1rem;
+.form-box {
+  width: 380px;
+  height: 480px;
+  position: relative;
+  margin: 6% auto;
+  background: #fff;
+  padding: 5px;
+  overflow: hidden;
+  border-radius: 1rem;
 }
 
-.button-box{
-	width: 90%;
-	margin: 1rem auto;
-	display: flex;
-	justify-content: center;
-	gap: 1rem;
-	position: relative;
-	/* box-shadow: 0 0 20px 9px #0179be38; */
-	border-radius: 30px;
+.button-box {
+  width: 90%;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+  /* box-shadow: 0 0 20px 9px #0179be38; */
+  border-radius: 30px;
 }
 
-.toggle-btn{
-	padding: 10px 30px;
-	cursor: pointer;
-	background: transparent;
-	border: 0;
-	outline: none;
-	position: relative;
+.toggle-btn {
+  padding: 10px 30px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  outline: none;
+  position: relative;
 }
 
-#btn{
-	top: 0;
-	left: 0;
-	position: absolute;
-	width: 50%;
-	height: 100%;
-	background: linear-gradient(to right, #02aab0, #00cdac);
-	border-radius: 40px;
-	transition:  .8s;
+#btn {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, #02aab0, #00cdac);
+  border-radius: 40px;
+  transition: 0.8s;
 }
 
-.social-icons{
-	margin: 30px auto;
-	text-align: center;
+.input-group {
+  top: 30px;
+  position: absolute;
+  width: 280px;
+  transition: 0.5s;
 }
 
-.social-icons img{
-	width: 30px;
-	margin: 0 12px;
-	box-shadow: 0 0 20px 0 #7f7f7f3d;
-	cursor: pointer;
-	border-radius: 50%;
-}
-.input-group{
-	top: 180px;
-	position: absolute;
-	width: 280px;
-	transition: .5s;
+.input-field {
+  width: 100%;
+  padding: 10px 0;
+  margin: 5px 0;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid #999;
+  outline: none;
+  background: transparent;
 }
 
-.input-field{
-	width: 100%;
-	padding: 10px 0;
-	margin: 5px 0;
-	border-left: 0;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 1px solid #999;
-	outline: none;
-	background: transparent;
+.submit-btn {
+  width: 85%;
+  padding: 15px 30px;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  background: linear-gradient(to right, #02aab0, #00cdac);
+  border: 0;
+  outline: none;
+  border-radius: 30px;
 }
 
-.submit-btn{
-	width: 85%;
-	padding: 15px 30px;
-	cursor: pointer;
-	display: block;
-	margin: auto;
-	background: linear-gradient(to right, #02aab0, #00cdac);
-	border: 0;
-	outline: none;
-	border-radius: 30px;
+.check-box {
+  margin: 30px 10px 30px 0;
 }
 
-.check-box{
-	margin: 30px 10px 30px 0;
+a {
+  text-decoration: none;
+  color: #000;
 }
 
-a{
-	text-decoration: none;
-	color: #000;
+a:focus {
+  outline: none;
 }
 
-span{
-	color: #777;
-	font-size: 15px;
-	bottom: 68px;
-	position: absolute;
+span {
+  color: #777;
+  font-size: 15px;
+  bottom: 68px;
+  position: absolute;
 }
 
-#login{
-	left: 50px;
+#login {
+  left: 50px;
 }
 
-#register{
-	left: 50px;
+#register {
+  left: 50px;
 }
 
 .ok {
-	text-align: center;
-	width: 100%;
-	padding: 12px;
-	background: linear-gradient(to right, #51d1f6, #2271b3);
-	color: #000;
+  text-align: center;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(to right, #51d1f6, #2271b3);
+  color: #000;
 }
 
 .bad {
-	text-align: center;
-	width: 100%;
-	padding: 12px;
-	background-color: red;
-	color: #fff;
+  text-align: center;
+  width: 100%;
+  padding: 12px;
+  background-color: red;
+  color: #fff;
 }

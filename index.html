@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <title>Login</title>
+    <link rel="stylesheet" href="./css/loginstyle.css" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
   </head>
 
   <body>
@@ -15,7 +17,15 @@
             <button type="button" class="toggle-btn" onclick="login()">
               Entrar
             </button>
-            <button type="button" class="toggle-btn" onclick="register()">
+            <!-- 
+              <button onclick="window.location.href='./nombre-de-la-pagina.html'">Ir a otra página</button>
+
+            -->
+            <button
+              type="button"
+              class="toggle-btn"
+              onclick="window.location.href='./register.html'"
+            >
               Registrarse
             </button>
           </div>
@@ -23,7 +33,7 @@
             action="php/ingresar.php"
             method="post"
             id="login"
-            class="form p-5"
+            class="input-group"
           >
             <fieldset>
               <div class="form-group mb-3">
@@ -51,81 +61,8 @@
               />
             </fieldset>
           </form>
-          <!-- Registro -->
-          <form
-            action="./php/registrar.php"
-            method="POST"
-            id="register"
-            class="form p-5"
-          >
-            <fieldset>
-              <div class="form-group mb-3">
-                <input
-                  class="form-control"
-                  placeholder="Nombre"
-                  name="name"
-                  type="text"
-                  autofocus
-                />
-              </div>
-              <div class="form-group mb-3">
-                <input
-                  class="form-control"
-                  placeholder="Apellido"
-                  name="lastname"
-                  type="text"
-                  autofocus
-                />
-              </div>
-              <div class="form-group mb-3">
-                <input
-                  class="form-control"
-                  placeholder="Usuario"
-                  name="user"
-                  type="text"
-                  autofocus
-                />
-              </div>
-              <div class="form-group mb-3">
-                <input
-                  class="form-control"
-                  placeholder="Correo"
-                  name="email"
-                  type="email"
-                  autofocus
-                />
-              </div>
-              <div class="form-group mb-3">
-                <input
-                  class="form-control"
-                  placeholder="Fecha Nacimiento"
-                  name="date"
-                  type="date"
-                  autofocus
-                />
-              </div>
-              <div class="form-group mb-3">
-                <input
-                  class="form-control"
-                  placeholder="Contraseña"
-                  name="password"
-                  type="password"
-                  value=""
-                />
-              </div>
-              <!-- Change this to a button or input when using this as a form -->
-              <input
-                type="submit"
-                class="btn btn-lg btn-success btn-block"
-                value="Registrarse"
-              />
-            </fieldset>
-          </form>
         </div>
       </div>
     </div>
-
-    <!--Animación para Register/Login-->
-    <script src="./js/animation.js"></script>
   </body>
 </html>

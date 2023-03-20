@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Login</title>
+    <link rel="stylesheet" href="./css/loginstyle.css" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  </head>
+
+  <body>
+    <!-- Create a login form with Bootstrap-->
+    <div class="form">
+      <div class="hero">
+        <div class="form-box">
+          <div class="button-box">
+            <div id="btn" style="left: 140px"></div>
+
+            <!-- 
+            <button
+              type="button"
+              class="toggle-btn"
+              onclick="window.location.href='./register.html'"
+            >
+
+            -->
+            <button
+              type="button"
+              class="toggle-btn"
+              onclick="window.location.href='./index.html'"
+            >
+              Entrar
+            </button>
+            <button type="button" class="toggle-btn" onclick="register()">
+              Registrarse
+            </button>
+          </div>
+          <!-- Registro -->
+          <form
+            action="./php/registrar.php"
+            method="POST"
+            id="register"
+            class="input-group2"
+            style="margin-top: 0"
+          >
+            <fieldset>
+              <div class="form-group mb-3">
+                <input
+                  class="form-control"
+                  placeholder="Nombre"
+                  name="name"
+                  type="text"
+                  autofocus
+                />
+              </div>
+              <div class="form-group mb-3">
+                <input
+                  class="form-control"
+                  placeholder="Apellido"
+                  name="lastname"
+                  type="text"
+                  autofocus
+                />
+              </div>
+              <div class="form-group mb-3">
+                <input
+                  class="form-control"
+                  placeholder="Usuario"
+                  name="user"
+                  type="text"
+                  autofocus
+                />
+              </div>
+              <div class="form-group mb-3">
+                <input
+                  class="form-control"
+                  placeholder="Correo"
+                  name="email"
+                  type="email"
+                  autofocus
+                />
+              </div>
+              <div class="form-group mb-3">
+                <input
+                  class="form-control"
+                  placeholder="Fecha Nacimiento"
+                  name="date"
+                  type="date"
+                  autofocus
+                />
+              </div>
+              <div class="form-group mb-3">
+                <input
+                  class="form-control"
+                  placeholder="Contraseña"
+                  name="password"
+                  type="password"
+                  value=""
+                />
+              </div>
+              <!-- Change this to a button or input when using this as a form -->
+              <input
+                type="submit"
+                class="btn btn-lg btn-success btn-block"
+                value="Registrarse"
+              />
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!--Animación para Register/Login-->
+    <script src="./js/animation.js"></script>
+  </body>
+</html>
