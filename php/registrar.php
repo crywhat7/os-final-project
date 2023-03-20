@@ -29,7 +29,7 @@ if ($conexion) {
         $fech_nacimiento = trim($fech_nacimiento);
         $password = trim($password);
 
-        $sql = "INSERT INTO clientes(nombre,apellido, fecha_nacimiento,fecha_registro,username,pass,email) VALUES ('$name','$lastname','$fech_nacimiento',CURRENT_DATE(),'$user','$password','$email');";
+        $sql = "INSERT INTO clientes(nombre,apellido, fecha_nacimiento,username,pass,email) VALUES ('$name','$lastname','$fech_nacimiento','$user','$password','$email');";
 
         if (mysqli_query($conexion, $sql)) {
             echo "Se ha registrado el cliente";
