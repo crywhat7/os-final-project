@@ -15,13 +15,15 @@ if (mysqli_num_rows($resultado) > 0) {
     $nombre = $fila['nombre'];
     $username = $fila['username'];
     $email = $fila['email'];
+    $admin = $fila['admin'];
     echo "
         <script>
             const session = {
                 codigo_cliente: {$codigo},
                 nombre: '{$nombre}',
                 username: '{$username}',
-                email: '{$email}'
+                email: '{$email}',
+                esAdmin: Boolean({$admin})
             }
             sessionStorage.setItem('data-user', JSON.stringify(session));
             window.setTimeout(function(){

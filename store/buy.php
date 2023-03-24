@@ -27,6 +27,9 @@
           <li class="nav-item">
             <a class="nav-link active">Tienda</a>
           </li>
+          <li class="nav-item mantenimiento-link d-none">
+            <a class="nav-link" href="../mantenimiento/ganado.php">Mantenimiento</a>
+          </li>
         </ul>
       </div>
       <!-- Al final de todo, un icono -->
@@ -88,6 +91,7 @@
     crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/ef2430d1e3.js" crossorigin="anonymous"></script>
   <script src="./js/store.js"></script>
+  <script src="./js/main.js"></script>
 </body>
 
 </html>

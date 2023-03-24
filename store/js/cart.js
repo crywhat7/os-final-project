@@ -8,6 +8,7 @@ const resumen = {
 }
 
 const renderizarCarrito = () => {
+    if (!carritoTableBody) return;
     carritoTableBody.innerHTML = '';
     productosCarrito.forEach(producto => {
         carritoTableBody.innerHTML += `
@@ -56,24 +57,6 @@ const comprar = () => {
     sql_insertar_ventas = `INSERT INTO ventas (codigo_producto, codigo_cliente, codigo_factura, cantidad, precio, total, fecha_venta)
     VALUES
     ${valuesVentas}`;
-
-    // const sql = `
-    //     START TRANSACTION;INSERT INTO facturas (codigo_cliente, subtotal, impuesto, total, fecha_factura) VALUES (${codigo_cliente}, 0, 0, 0, '${fechaFactura}');SET @codigo_factura = LAST_INSERT_ID();
-
-    //     INSERT INTO ventas (codigo_producto, codigo_cliente, codigo_factura, cantidad, precio, total, fecha_venta)
-    //     VALUES
-    //     ${valuesVentas}
-        
-    //     SET @subtotal = (SELECT SUM(total) FROM ventas WHERE codigo_factura = @codigo_factura);
-    //     SET @impuesto = @subtotal * 0.1;
-    //     SET @total = @subtotal + @impuesto;
-        
-    //     UPDATE facturas
-    //     SET subtotal = @subtotal, impuesto = @impuesto, total = @total
-    //     WHERE codigo_factura = @codigo_factura;
-
-    //     COMMIT;
-    // `;
 
     // Crear un formulario para enviar los datos
     const form = document.createElement('form');
